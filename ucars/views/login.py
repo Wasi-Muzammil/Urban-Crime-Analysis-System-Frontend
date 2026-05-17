@@ -3,6 +3,42 @@ import streamlit as st
 from utils.styles import get_theme, navbar, footer
 from utils.api import get_google_login_url
 
+import streamlit.components.v1 as components
+from urllib.parse import urlencode
+
+
+def show_google_login_button():
+    client_id   = st.secrets["GOOGLE_CLIENT_ID"]
+    redirect_uri = st.secrets["GOOGLE_REDIRECT_URI"]  # your Vercel callback URL
+    
+    params = {
+        "client_id":     client_id,
+        "redirect_uri":  redirect_uri,
+        "response_type": "code",
+        "scope":         "openid email profile",
+        "access_type":   "offline",
+        "prompt":        "consent",
+    }
+    google_url = f"https://accounts.google.com/o/oauth2/v2/auth?{urlencode(params)}"
+
+    components.html(
+        f"""
+        <button onclick="window.top.location.href='{google_url}'" style="
+            background-color: #DC2626;
+            color: white;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+        ">
+            🔵 Continue with Google
+        </button>
+        """,
+        height=60,
+    )
 
 def show():
     get_theme()
@@ -42,15 +78,7 @@ def show():
         st.caption("Sign in using your Google account. Your data is encrypted and protected.")
         st.divider()
 
-        google_url = get_google_login_url()
-        st.markdown(
-            f'<a href="{google_url}" target="_self" style="'
-            f'display:block; text-align:center; padding:0.6rem; '
-            f'background:#DC2626; color:white; border-radius:8px; '
-            f'text-decoration:none; font-weight:700;">'
-            f'🔵 Continue with Google</a>',
-            unsafe_allow_html=True
-        )
+        show_google_login_button()
 
         st.write(" ")
 
