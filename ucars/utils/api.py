@@ -4,7 +4,7 @@
 import requests
 import streamlit as st
 
-BASE_URL = "https://urban-crime-analysis-system-backend.vercel.app/"  
+BASE_URL = st.secrets["BACKEND_URL"]  
 
 
 def _headers():
