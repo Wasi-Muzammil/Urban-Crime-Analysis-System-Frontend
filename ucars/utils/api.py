@@ -85,7 +85,7 @@ def _patch(endpoint: str, data: dict = None):
 
 def get_google_login_url() -> str:
     """Returns the Google OAuth redirect URL."""
-    return f"{BASE_URL}/auth/google"
+    return f"{BASE_URL}auth/google"
 
 
 def logout():
