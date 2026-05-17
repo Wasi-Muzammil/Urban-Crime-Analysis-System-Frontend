@@ -17,7 +17,7 @@ def _get(endpoint: str, params: dict = None):
     """Generic GET."""
     try:
         r = requests.get(
-            f"{BASE_URL}{endpoint}",
+            f"{BASE_URL}/{endpoint}",
             headers=_headers(),
             params=params,
             timeout=30
@@ -39,7 +39,7 @@ def _post(endpoint: str, data: dict = None):
     """Generic POST."""
     try:
         r = requests.post(
-            f"{BASE_URL}{endpoint}",
+            f"{BASE_URL}/{endpoint}",
             headers=_headers(),
             json=data,
             timeout=10
@@ -61,7 +61,7 @@ def _patch(endpoint: str, data: dict = None):
     """Generic PATCH."""
     try:
         r = requests.patch(
-            f"{BASE_URL}{endpoint}",
+            f"{BASE_URL}/{endpoint}",
             headers=_headers(),
             json=data,
             timeout=10
@@ -85,7 +85,7 @@ def _patch(endpoint: str, data: dict = None):
 
 def get_google_login_url() -> str:
     """Returns the Google OAuth redirect URL."""
-    return f"{BASE_URL}auth/google"
+    return f"{BASE_URL}/auth/google"
 
 
 def logout():
