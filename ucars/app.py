@@ -40,6 +40,7 @@ if not st.session_state.get("logged_in"):
         st.session_state.current_page = (
             "admin_dashboard" if role == "admin" else "user_dashboard"
         )
+        st.query_params.clear()
         st.rerun()
 
 # ── Get current page ──

@@ -83,10 +83,18 @@ def _patch(endpoint: str, data: dict = None):
 # AUTH
 # ══════════════════════════════════════════
 
-def get_google_login_url() -> str:
-    """Returns the Google OAuth redirect URL."""
-    return f"{BASE_URL}/auth/google"
+# def get_google_login_url() -> str:
+#     """Returns the Google OAuth redirect URL."""
+#     return f"{BASE_URL}/auth/google"
 
+def get_google_login_url() -> str:
+    try:
+        r = requests.get(f"{BASE_URL}/auth/google", timeout=10)
+        r.raise_for_status()
+        return r.json()["url"]   # ✅ Get the actual Google URL
+    except Exception as e:
+        st.error(f"❌ Could not get login URL: {e}")
+        return None
 
 def logout():
     """Call logout endpoint to log audit."""
