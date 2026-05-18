@@ -24,7 +24,7 @@ def show():
                 [data-testid="stLinkButton"] a {
                     display: block;
                     text-align: center;
-                    padding: 0.6rem;
+                    padding: 1rem;
                     background: #DC2626 !important;
                     color: white !important;
                     border-radius: 8px !important;
