@@ -39,7 +39,7 @@ def show():
             </style>
         """, unsafe_allow_html=True)
 
-        st.link_button("🔵 Continue with Google", google_url)
+        st.link_button("🔵 Continue with Google", google_url,use_container_width=True)
 
         st.write(" ")
 
