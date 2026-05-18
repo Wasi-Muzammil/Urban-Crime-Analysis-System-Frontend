@@ -1,7 +1,7 @@
 # views/register.py
 import streamlit as st
 from utils.styles import get_theme, navbar, footer
-from utils.api import get_google_login_url
+from views.login import show_google_login_button
 
 
 def show():
@@ -17,7 +17,7 @@ def show():
         st.caption("Create your account in seconds using Google. No password required.")
         st.divider()
 
-        google_url = get_google_login_url()
+        google_url = show_google_login_button()
         st.markdown("""
             <style>
                 /* Target link_button anchor */
