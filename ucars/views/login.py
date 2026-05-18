@@ -19,26 +19,7 @@ def show_google_login_button():
         "access_type":   "offline",
         "prompt":        "consent",
     }
-    google_url = f"https://accounts.google.com/o/oauth2/v2/auth?{urlencode(params)}"
-
-    components.html(
-        f"""
-        <button onclick="window.top.location.href='{google_url}'" style="
-            background-color: #DC2626;
-            color: white;
-            padding: 10px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-        ">
-            🔵 Continue with Google
-        </button>
-        """,
-        height=60,
-    )
+    return f"https://accounts.google.com/o/oauth2/v2/auth?{urlencode(params)}"
 
 def show():
     get_theme()
@@ -78,7 +59,15 @@ def show():
         st.caption("Sign in using your Google account. Your data is encrypted and protected.")
         st.divider()
 
-        show_google_login_button()
+        google_url = show_google_login_button()
+        st.markdown(
+            f'<a href="{google_url}" target="_self" style="'
+            f'display:block; text-align:center; padding:0.6rem; '
+            f'background:#DC2626; color:white; border-radius:8px; '
+            f'text-decoration:none; font-weight:700;">'
+            f'🔵 Continue with Google</a>',
+            unsafe_allow_html=True
+        )
 
         st.write(" ")
 
