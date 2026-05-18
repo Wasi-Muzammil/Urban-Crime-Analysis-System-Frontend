@@ -18,14 +18,28 @@ def show():
         st.divider()
 
         google_url = get_google_login_url()
-        st.markdown(
-            f'<a href="{google_url}" target="_self" style="'
-            f'display:block; text-align:center; padding:0.6rem; '
-            f'background:#DC2626; color:white; border-radius:8px; '
-            f'text-decoration:none; font-weight:700;">'
-            f'🔵 Continue with Google</a>',
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+            <style>
+                /* Target link_button anchor */
+                [data-testid="stLinkButton"] a {
+                    display: block;
+                    text-align: center;
+                    padding: 0.6rem;
+                    background: #DC2626 !important;
+                    color: white !important;
+                    border-radius: 8px !important;
+                    text-decoration: none;
+                    font-weight: 700;
+                    border: none;
+                }
+                [data-testid="stLinkButton"] a:hover {
+                    background: #B91C1C !important;
+                    color: white !important;
+                }
+            </style>
+        """, unsafe_allow_html=True)
+
+        st.link_button("🔵 Continue with Google", google_url)
 
         st.write(" ")
 
