@@ -60,7 +60,28 @@ def show():
         st.divider()
 
         google_url = show_google_login_button()
-        st.link_button("🔐 Sign in with Google", google_url)
+        st.markdown("""
+            <style>
+                /* Target link_button anchor */
+                [data-testid="stLinkButton"] a {
+                    display: block;
+                    text-align: center;
+                    padding: 0.6rem;
+                    background: #DC2626 !important;
+                    color: white !important;
+                    border-radius: 8px !important;
+                    text-decoration: none;
+                    font-weight: 700;
+                    border: none;
+                }
+                [data-testid="stLinkButton"] a:hover {
+                    background: #B91C1C !important;
+                    color: white !important;
+                }
+            </style>
+        """, unsafe_allow_html=True)
+
+        st.link_button("🔵 Continue with Google", google_url)
 
         st.write(" ")
 
